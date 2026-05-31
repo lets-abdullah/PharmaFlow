@@ -29,7 +29,7 @@ var import_cors = __toESM(require("cors"), 1);
 var import_cookie_parser = __toESM(require("cookie-parser"), 1);
 var import_jsonwebtoken = __toESM(require("jsonwebtoken"), 1);
 var import_bcryptjs = __toESM(require("bcryptjs"), 1);
-var PORT = Number(process.env.PORT || 3e3);
+var PORT = Number(process.env.PORT || 5174);
 var HOST = process.env.HOST || "127.0.0.1";
 var DB_FILE = process.env.DB_FILE || import_path.default.join(process.cwd(), "db.json");
 var JWT_SECRET = process.env.JWT_SECRET || "pharma-secret-key";
@@ -232,6 +232,9 @@ async function saveDB(db) {
 }
 async function startServer() {
   const app = (0, import_express.default)();
+  app.get("/health", (_req, res) => {
+    res.status(200).json({ ok: true });
+  });
   app.use((0, import_cors.default)());
   app.use(import_express.default.json());
   app.use((0, import_cookie_parser.default)());
