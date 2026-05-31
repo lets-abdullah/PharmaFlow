@@ -229,7 +229,17 @@ export function isMockEnabled() {
   // Fallback to VITE_PUBLIC_MOCK_API for safety.
   const envAny = (import.meta as any)?.env ?? {};
   const v = envAny.VITE_MOCK_API ?? envAny.VITE_PUBLIC_MOCK_API;
-  return String(v) === 'true' || String(v) === '1';
+  if (v !== undefined) {
+    return String(v) === 'true' || String(v) === '1';
+  }
+  // Default to mock API if hosted on a non-localhost domain (like Vercel)
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host !== 'localhost' && host !== '127.0.0.1' && host !== '') {
+      return true;
+    }
+  }
+  return false;
 }
 
 
