@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Pill, 
@@ -9,7 +9,6 @@ import {
   AlertTriangle, 
   BarChart3, 
   Settings, 
-  LogOut,
   Plus
 } from 'lucide-react';
 import { useAuth } from './AuthContext';
@@ -41,13 +40,7 @@ function SidebarItem({ to, icon: Icon, label }: SidebarItemProps) {
 }
 
 export function Layout({ children }: { children: ReactNode }) {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
-  };
+  const { user } = useAuth();
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -72,18 +65,11 @@ export function Layout({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="p-4 border-t border-gray-100">
-          <div className="mb-4 px-4 py-3 bg-gray-50 rounded-lg">
+          <div className="px-4 py-3 bg-gray-50 rounded-lg">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">User</p>
             <p className="text-sm font-medium text-gray-900 leading-tight mt-1">{user?.name}</p>
             <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
           </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-4 py-3 text-gray-500 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
-          >
-            <LogOut size={20} />
-            <span>Logout</span>
-          </button>
         </div>
       </aside>
 

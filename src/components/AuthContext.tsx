@@ -17,28 +17,16 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>({
+    id: '1',
+    username: 'admin',
+    role: 'admin',
+    name: 'Admin Owner'
+  });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function checkAuth() {
-      try {
-        const { apiFetch } = await import('../lib/api');
-        const res = await apiFetch('/api/auth/me');
-
-
-
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data);
-        }
-      } catch (err) {
-        console.error('Auth check failed', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    checkAuth();
+    // Auth check bypassed since login/signup functionality is removed
   }, []);
 
   const login = (userData: User) => {
@@ -46,12 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
-    try {
-      const { apiFetch } = await import('../lib/api');
-      await apiFetch('/api/auth/logout', { method: 'POST' });
-    } finally {
-      setUser(null);
-    }
+    setUser(null);
   };
 
   return (
