@@ -1,83 +1,20 @@
-# 💊 Pharmacy Management System (Desktop + Web Preview)
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-A **Pharmacy Medicine Data Management System** designed to store and manage medicine records, supplier details, pricing, and inventory information in a structured and efficient way. This system helps organize pharmacy operations and maintain a clear record of all medicines and suppliers.
+# Run and deploy your AI Studio app
 
----
+This contains everything you need to run your app locally.
 
-## 🌐 Live Preview
+View your app in AI Studio: https://ai.studio/apps/8cf19f26-7ff0-4cc5-b938-c4812d68b306
 
-🔗 https://YOUR_DEPLOYED_WEBSITE_LINK
+## Run Locally
 
-> This preview shows a web-based interface for viewing pharmacy data.
+**Prerequisites:**  Node.js
 
----
 
-## 🖥️ Desktop Application Access
-
-The full **desktop software version** is available upon request.
-
-📩 Contact me via Instagram for access:
-👉 https://instagram.com/itx_abdullah.zone
-
----
-
-## 📦 Features
-
-* 💊 Medicine database management
-* 🏭 Supplier records management
-* 💰 Medicine pricing and cost tracking
-* 📊 Organized inventory system
-* 🔍 Easy search and filtering system
-* 🧾 Structured data storage
-* 🖥️ Desktop application support
-* 🌐 Web-based preview interface
-
----
-
-## 🧠 Project Purpose
-
-This project is built to demonstrate a **real-world pharmacy data management system**, focusing on:
-
-* Efficient record keeping
-* Structured medicine inventory
-* Supplier tracking
-* Price management system
-* Dual access (Desktop + Web preview)
-
----
-
-## ⚙️ Tech Stack
-
-* Frontend: HTML / CSS / JavaScript *(or your actual stack if different)*
-* Desktop App: *(mention your technology like Electron / Python / Java / .NET)*
-* Data Storage: Local / JSON / File-based system *(update if needed)*
-
----
-
-## 📸 Screenshots
-
-(Add screenshots here of dashboard, medicines list, supplier panel, etc.)
-
----
-
-## 📬 Contact
-
-For desktop app access or collaboration:
-
-* Instagram: https://instagram.com/itx_abdullah.zone
-
----
-
-## 🚀 Future Improvements
-
-* Barcode scanning system
-* Billing module
-* Stock alerts (low inventory)
-* User authentication system
-* Cloud database integration
-
----
-
-## 📄 License
-
-This project is for educational and portfolio purposes.
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

@@ -1,0 +1,145 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "passwordHash": "$2b$10$hHGnAB2ZdRQ9DRHwiNX9..WIQ/2qTn4av.ZnyCQtCSRTblRMvR09m",
+      "role": "admin",
+      "name": "Admin Owner"
+    }
+  ],
+  "medicines": [
+    {
+      "id": "m1",
+      "name": "Paracetamol 500mg",
+      "genericName": "Acetaminophen",
+      "batchNumber": "BT-9921",
+      "expiryDate": "2027-12-01",
+      "stock": 150,
+      "minStock": 50,
+      "purchasePrice": 0.5,
+      "salePrice": 2,
+      "supplierId": "s1"
+    },
+    {
+      "id": "m2",
+      "name": "Amoxicillin 250mg",
+      "genericName": "Antibiotic",
+      "batchNumber": "BT-1122",
+      "expiryDate": "2026-06-15",
+      "stock": 12,
+      "minStock": 20,
+      "purchasePrice": 5,
+      "salePrice": 12,
+      "supplierId": "s2"
+    },
+    {
+      "id": "m3",
+      "name": "Ibuprofen 400mg",
+      "genericName": "NSAID",
+      "batchNumber": "BT-0021",
+      "expiryDate": "2025-08-10",
+      "stock": 300,
+      "minStock": 100,
+      "purchasePrice": 1.2,
+      "salePrice": 4.5,
+      "supplierId": "s1"
+    },
+    {
+      "id": "m4",
+      "name": "Cetirizine 10mg",
+      "genericName": "Antihistamine",
+      "batchNumber": "BT-4422",
+      "expiryDate": "2026-01-20",
+      "stock": 45,
+      "minStock": 30,
+      "purchasePrice": 0.8,
+      "salePrice": 3,
+      "supplierId": "s2"
+    },
+    {
+      "id": "m5",
+      "name": "Metformin 850mg",
+      "genericName": "Antidiabetic",
+      "batchNumber": "BT-7788",
+      "expiryDate": "2024-11-30",
+      "stock": 80,
+      "minStock": 40,
+      "purchasePrice": 2.5,
+      "salePrice": 8,
+      "supplierId": "s1"
+    }
+  ],
+  "sales": [
+    {
+      "id": "sale1",
+      "items": [
+        {
+          "medicineId": "m1",
+          "medicineName": "Paracetamol 500mg",
+          "quantity": 10,
+          "price": 2,
+          "total": 20
+        }
+      ],
+      "totalAmount": 20,
+      "customerName": "Walking Customer",
+      "date": "2026-05-13T01:28:50.752Z",
+      "userId": "1"
+    },
+    {
+      "id": "sale2",
+      "items": [
+        {
+          "medicineId": "m3",
+          "medicineName": "Ibuprofen 400mg",
+          "quantity": 5,
+          "price": 4.5,
+          "total": 22.5
+        }
+      ],
+      "totalAmount": 22.5,
+      "customerName": "John Doe",
+      "date": "2026-05-14T01:28:50.753Z",
+      "userId": "1"
+    },
+    {
+      "id": "sale3",
+      "items": [
+        {
+          "medicineId": "m1",
+          "medicineName": "Paracetamol 500mg",
+          "quantity": 2,
+          "price": 2,
+          "total": 4
+        },
+        {
+          "medicineId": "m4",
+          "medicineName": "Cetirizine 10mg",
+          "quantity": 3,
+          "price": 3,
+          "total": 9
+        }
+      ],
+      "totalAmount": 13,
+      "customerName": "Jane Smith",
+      "date": "2026-05-15T01:28:50.753Z",
+      "userId": "1"
+    }
+  ],
+  "purchases": [],
+  "suppliers": [
+    {
+      "id": "s1",
+      "name": "Global Pharma Distribution",
+      "contact": "+1 234 567 890",
+      "address": "Industrial Area, Block 4, City Centre"
+    },
+    {
+      "id": "s2",
+      "name": "Reliable Medical Supplies",
+      "contact": "+1 987 654 321",
+      "address": "Port Warehouse, Dock 12"
+    }
+  ]
+}
