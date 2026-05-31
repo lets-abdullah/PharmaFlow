@@ -1,20 +1,46 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# PharmaFlow 💊
 
-# Run and deploy your AI Studio app
+PharmaFlow is a modern pharmacy management solution designed to simplify pharmacy operations, inventory tracking, prescription management, and workflow automation.
 
-This contains everything you need to run your app locally.
+> **Note:** This repository contains only a preview/demo version of PharmaFlow. The complete desktop application is available upon request.
 
-View your app in AI Studio: https://ai.studio/apps/8cf19f26-7ff0-4cc5-b938-c4812d68b306
+## 🌟 Features
 
-## Run Locally
+- Modern and responsive user interface
+- Pharmacy inventory overview
+- Medicine management
+- Sales and stock monitoring
+- Dashboard analytics
+- Workflow automation preview
 
-**Prerequisites:**  Node.js
+## 🚀 Live Demo
 
+Visit the live preview here:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+🔗 : [Live Preview](https://pharmaflow-site.vercel.app/)
+
+## 📸 Screenshots
+
+Add screenshots of your application here.
+
+## 💼 Desktop Version
+
+The full-featured desktop version of PharmaFlow includes advanced functionality not available in this preview.
+
+If you're interested in the complete desktop application, feel free to contact me.
+
+## 📞 Contact
+
+For inquiries, demos, licensing, or the desktop version:
+
+📷 Instagram: : [Contact Now](https://www.instagram.com/itx_abdullah.zone/)
+
+## ⚠️ Disclaimer
+
+This repository is intended for demonstration and portfolio purposes only. It does not include the complete source code or all features of the commercial desktop version.
+
+## 📄 License
+
+All Rights Reserved.
+
+Unauthorized copying, redistribution, or commercial use of the proprietary PharmaFlow desktop application is prohibited.
