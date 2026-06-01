@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
+import {
+  LayoutDashboard,
+
   Pill, 
   ShoppingCart, 
   Truck, 
@@ -16,7 +17,7 @@ import { cn } from '@/src/lib/utils';
 
 interface SidebarItemProps {
   to: string;
-  icon: any;
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
   label: string;
 }
 
@@ -24,11 +25,11 @@ function SidebarItem({ to, icon: Icon, label }: SidebarItemProps) {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) =>
+      className={({ isActive }: { isActive: boolean }) =>
         cn(
           "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors",
-          isActive 
-            ? "bg-blue-50 text-blue-600 font-medium" 
+          isActive
+            ? "bg-blue-50 text-blue-600 font-medium"
             : "text-gray-500 hover:bg-gray-100 hover:text-gray-900"
         )
       }
@@ -39,13 +40,33 @@ function SidebarItem({ to, icon: Icon, label }: SidebarItemProps) {
   );
 }
 
+function isMobileDevice() {
+  if (typeof window === 'undefined') return false;
+
+  const ua = (navigator.userAgent || '').toLowerCase();
+  const mobileUA =
+    /android|iphone|ipad|ipod|iemobile|opera mini|mobile/.test(ua);
+
+  const touch = 'ontouchstart' in window || (navigator as any).maxTouchPoints > 0;
+  const viewportNarrow = window.innerWidth <= 768;
+
+  return mobileUA || (touch && viewportNarrow);
+}
+
 export function Layout({ children }: { children: ReactNode }) {
   const { user } = useAuth();
+  const [showMobileBanner, setShowMobileBanner] = React.useState(false);
+
+  React.useEffect(() => {
+    setShowMobileBanner(isMobileDevice());
+  }, []);
 
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
+
+
         <div className="p-6 border-b border-gray-100">
           <div className="flex items-center gap-2 text-blue-600 font-bold text-2xl">
             <Plus className="bg-blue-600 text-white rounded-md p-1" size={28} strokeWidth={3} />
@@ -76,6 +97,23 @@ export function Layout({ children }: { children: ReactNode }) {
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
         <div className="p-8 max-w-7xl mx-auto">
+          {showMobileBanner && (
+            <div className="mb-6">
+              <div className="bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4 flex items-start justify-between gap-4">
+                <div className="text-sm leading-relaxed">
+                  This is a Desktop Application Preview. Its not supported mobile Devices so kindly preview it on Desktop or switch to desktop site from the top right 3 dots. THANKS
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowMobileBanner(false)}
+                  className="shrink-0 rounded-md p-1 text-yellow-700 hover:bg-yellow-100 transition"
+                  aria-label="Dismiss"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
           {children}
         </div>
       </main>
