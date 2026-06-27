@@ -10,7 +10,8 @@ import {
   AlertTriangle, 
   BarChart3, 
   Settings, 
-  Plus
+  Plus,
+  Stethoscope
 } from 'lucide-react';
 import { useAuth } from './AuthContext';
 import { cn } from '@/src/lib/utils';
@@ -82,6 +83,7 @@ export function Layout({ children }: { children: ReactNode }) {
           <SidebarItem to="/purchases" icon={Truck} label="Purchases" />
           <SidebarItem to="/suppliers" icon={Users} label="Suppliers" />
           <SidebarItem to="/reports" icon={BarChart3} label="Reports" />
+          <SidebarItem to="/ai-doctor" icon={Stethoscope} label="AI Doctor" />
           <SidebarItem to="/settings" icon={Settings} label="Settings" />
         </nav>
 

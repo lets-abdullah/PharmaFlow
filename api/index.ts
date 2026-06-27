@@ -537,6 +537,73 @@ app.get('/api/reports/:type', authenticateToken, async (req, res) => {
   res.status(404).json({ message: 'Report type not found' });
 });
 
+// AI Doctor Chat Proxy
+app.post('/api/ai-doctor/chat', authenticateToken, async (req, res) => {
+  try {
+    const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
+    if (!RAPIDAPI_KEY) {
+      return res.status(500).json({ message: 'AI Doctor API key is not configured. Set RAPIDAPI_KEY in your environment variables.' });
+    }
+
+    const { message, specialization } = req.body;
+
+    if (!message || typeof message !== 'string' || message.trim().length === 0) {
+      return res.status(400).json({ message: 'Please enter a valid medical question.' });
+    }
+
+    const sanitizedMessage = message.trim().slice(0, 2000);
+    const validSpecialization = typeof specialization === 'string' && specialization.trim().length > 0
+      ? specialization.trim()
+      : 'general';
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000);
+
+    try {
+      const apiResponse = await fetch(
+        'https://ai-doctor-api-ai-medical-chatbot-healthcare-ai-assistant.p.rapidapi.com/chat?noqueue=1',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': RAPIDAPI_KEY,
+            'x-rapidapi-host': 'ai-doctor-api-ai-medical-chatbot-healthcare-ai-assistant.p.rapidapi.com',
+          },
+          body: JSON.stringify({
+            message: sanitizedMessage,
+            specialization: validSpecialization,
+            language: 'en',
+          }),
+          signal: controller.signal,
+        }
+      );
+
+      clearTimeout(timeout);
+
+      if (apiResponse.status === 429) {
+        return res.status(429).json({ message: 'Too many requests. Please wait a moment and try again.' });
+      }
+
+      if (!apiResponse.ok) {
+        return res.status(apiResponse.status).json({
+          message: `AI Doctor API returned an error (${apiResponse.status}). Please try again.`,
+        });
+      }
+
+      const data = await apiResponse.json();
+      res.json(data);
+    } catch (fetchError: any) {
+      clearTimeout(timeout);
+      if (fetchError.name === 'AbortError') {
+        return res.status(504).json({ message: 'The request timed out. Please try again.' });
+      }
+      return res.status(502).json({ message: 'Unable to reach the AI Doctor service. Please check your connection and try again.' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'An unexpected error occurred. Please try again.' });
+  }
+});
+
 // Backup
 app.get('/api/backup', authenticateToken, isAdmin, async (_req, res) => {
   const db = await getDB();

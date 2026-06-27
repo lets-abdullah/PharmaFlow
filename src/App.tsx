@@ -11,6 +11,7 @@ import Purchases from './pages/Purchases';
 import Suppliers from './pages/Suppliers';
 import Expiry from './pages/Expiry';
 import Reports from './pages/Reports';
+import AiDoctor from './pages/AiDoctor';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <Layout>{children}</Layout>;
@@ -114,6 +115,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Reports />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/ai-doctor" 
+            element={
+              <ProtectedRoute>
+                <AiDoctor />
               </ProtectedRoute>
             } 
           />
