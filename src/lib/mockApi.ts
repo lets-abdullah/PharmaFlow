@@ -426,44 +426,6 @@ export async function mockFetch(input: RequestInfo | URL, init?: RequestInit) {
       });
     }
 
-    if (method === 'POST' && url.includes('/api/ai-doctor/chat')) {
-      const body = JSON.parse(String(init?.body ?? '{}'));
-      const userMessage = body.message || 'general question';
-      const spec = body.specialization || 'general';
-
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-
-      return resJson({
-        response: `Based on your question about "${userMessage}", here is some general guidance from the ${spec} perspective:\n\nThis is a simulated response from the AI Doctor mock API. In production, this would be a real AI-generated medical response.\n\nPlease consult with a healthcare professional for accurate medical advice.`,
-        recommendations: [
-          'Maintain a balanced diet and regular exercise routine',
-          'Stay hydrated and get adequate sleep (7-9 hours)',
-          'Schedule regular check-ups with your healthcare provider',
-          'Keep track of your symptoms and report any changes',
-        ],
-        warnings: [
-          'This is AI-generated guidance and should not replace professional medical advice',
-          'Seek immediate medical attention if you experience severe or worsening symptoms',
-        ],
-        references: [
-          'World Health Organization (WHO) Guidelines',
-          'National Institutes of Health (NIH) Medical Resources',
-          'Mayo Clinic Health Information Database',
-        ],
-        follow_up_questions: [
-          'How long have you been experiencing these symptoms?',
-          'Are you currently taking any medications?',
-          'Do you have any known allergies?',
-          'Is there a family history of this condition?',
-        ],
-        confidence: 'Medium',
-        emergency_level: 'Low',
-        consult_physician: 'Recommended',
-        related_specialties: ['General Medicine', 'Internal Medicine', 'Family Medicine'],
-      });
-    }
-
     return notFound();
   } catch {
     return new Response(JSON.stringify({ message: 'Mock API error' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
